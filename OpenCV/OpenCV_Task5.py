@@ -17,7 +17,7 @@ def MousePoints(event, x, y, flags, params):
 
 
 img = cv2.imread(
-    "D:\\Bussiness\\Vortex\\Tasks\\Python\\OpenCV\\OpenCV images&videos\\tasks_images_\\task_5\\computer vision.PNG")
+    "OpenCV images&videos\\tasks_images_\\task_5\\computer vision.PNG")
 while True:
     if counter == 4:
         width, height = 600, 500
