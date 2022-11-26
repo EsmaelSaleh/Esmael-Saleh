@@ -1,0 +1,54 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Rectangle
+from matplotlib.ticker import (AutoMinorLocator, MultipleLocator)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+
+# Set axis ranges; by default this will put major ticks every 25.
+ax.set_xlim(0, 200)
+ax.set_ylim(0, 200)
+
+# Change major ticks to show every 20.
+ax.xaxis.set_major_locator(MultipleLocator(20))
+ax.yaxis.set_major_locator(MultipleLocator(20))
+
+# Change minor ticks to show every 5. (20/5 = 4)
+ax.xaxis.set_minor_locator(AutoMinorLocator(5))
+ax.yaxis.set_minor_locator(AutoMinorLocator(5))
+
+# Turn grid on for both major and minor ticks and style minor slightly
+# differently.
+ax.grid(which='major', color='black')
+ax.grid(which='minor', color='black')
+
+# Function That Calculate The points that the float will be on after certain time and speed
+
+
+def end_points(x, y, theta, length):
+    x1 = x - length * np.cos(theta)
+    y1 = y - length * np.sin(theta)
+    return x1, y1
+
+# Define Speed , Time , Angle that given
+
+
+speed = 0.143 / 1000  # km/s
+time = 144 * 60 * 60  # seconds
+angle = 103  # degrees
+distance = speed * time  # km
+# points that the float will be on after certain time and speed
+points = end_points(40, 120, angle, distance)
+ax.add_patch(Rectangle((40, 120), 4, 4, color="black"))
+ax.add_patch(Rectangle((points[0], points[1]), 4, 4, color="red"))
+
+# Draw Line
+plt.plot((40+2, points[0]+2),
+         (120+2, points[1]+2), color="black")
+
+# displaying the titles
+plt.title("North", fontsize=20)
+plt.xlabel('South', fontsize=20)
+plt.ylabel('West', fontsize=20)
+
+plt.show()
